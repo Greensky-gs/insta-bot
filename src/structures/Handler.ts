@@ -20,6 +20,7 @@ export class Handler {
     private start() {
         this.loadCommands();
         this.loadEvents();
+        this.loadPronote();
     }
 
     private loadCommands() {
@@ -44,13 +45,14 @@ export class Handler {
         })
     }
     private async loadPronote() {
-        this.pronote = await login(process.env.pronoteURL)
+        this.pronote = await login(process.env.pronoteURL, process.env.pronoteUsername, process.env.pronotePassword, process.env.pronoteCas ?? 'none');
     }
 
     public get container() {
         return {
             commands: this.commands,
-            events: this.events
+            events: this.events,
+            pronote: this.pronote
         };
     }
     private log(msg: string) {

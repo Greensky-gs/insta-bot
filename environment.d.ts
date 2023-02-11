@@ -10,6 +10,9 @@ declare global {
             prefix: string;
             chatID: string;
             pronoteURL: string;
+            pronoteUsername: string;
+            pronotePassword: string;
+            pronoteCas?: string;
         }
     }
 }
