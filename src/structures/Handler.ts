@@ -3,13 +3,13 @@ import { readdirSync } from "fs";
 import { Command } from "./Command";
 import { CommandOptions } from "../typings/structures";
 import { Event } from "./Event";
-import { PronoteSession, login } from "@dorian-eydoux/pronote-api";
+import { PronoteStudentSession, login } from "@dorian-eydoux/pronote-api";
 
 export class Handler {
     private client: Client;
     private commands: Command<CommandOptions>[] = [];
     private events: Event<keyof ClientEvents>[] = [];
-    private pronote: PronoteSession;
+    private pronote: PronoteStudentSession;
 
     constructor(client: Client) {
         this.client = client;    
