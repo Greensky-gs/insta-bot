@@ -7,6 +7,8 @@ declare global {
             db_d: string;
             db_u: string;
             db_p: string;
+            prefix: string;
+            chatID: string;
         }
     }
 }
