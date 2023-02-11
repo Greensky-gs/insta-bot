@@ -1,7 +1,8 @@
 import { Command } from '../structures/Command';
+import { Values } from '../typings/bot';
 
 export default new Command({
-    allowed_users: ['57969933222'],
+    allowed_users: [Values.OwnerID],
     name: 'eval',
     description: 'Javascript eval',
     hiddenFromPublic: true
