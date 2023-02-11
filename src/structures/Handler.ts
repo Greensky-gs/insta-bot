@@ -1,78 +1,76 @@
-import { Client, ClientEvents } from "@androz2091/insta.js";
-import { readdirSync } from "fs";
-import { Command } from "./Command";
-import { CommandOptions } from "../typings/structures";
-import { Event } from "./Event";
-import { PronoteStudentSession, login } from "@dorian-eydoux/pronote-api";
+/* eslint-disable @typescript-eslint/no-var-requires */
+import { Client, ClientEvents } from '@androz2091/insta.js';
+import { readdirSync } from 'fs';
+import { Command } from './Command';
+import { CommandOptions } from '../typings/structures';
+import { Event } from './Event';
+import { PronoteStudentSession, login } from '@dorian-eydoux/pronote-api';
 
 export class Handler {
-  private client: Client;
-  private commands: Command<CommandOptions>[] = [];
-  private events: Event<keyof ClientEvents>[] = [];
-  private pronote: PronoteStudentSession;
+    private client: Client;
+    private commands: Command<CommandOptions>[] = [];
+    private events: Event<keyof ClientEvents>[] = [];
+    private pronote: PronoteStudentSession;
 
-  constructor(client: Client) {
-    this.client = client;
+    constructor(client: Client) {
+        this.client = client;
 
-    this.start();
-  }
+        this.start();
+    }
 
-  private start() {
-    this.loadCommands();
-    this.loadEvents();
-    this.loadPronote();
-  }
+    private start() {
+        this.loadCommands();
+        this.loadEvents();
+        this.loadPronote();
+    }
 
-  private loadCommands() {
-    this.client.commands = [];
+    private loadCommands() {
+        this.client.commands = [];
 
-    readdirSync("./dist/commands").forEach((fileName) => {
-      const cmd = require(`../commands/${fileName}`)
-        ?.default as Command<CommandOptions>;
+        readdirSync('./dist/commands').forEach((fileName) => {
+            const cmd = require(`../commands/${fileName}`)?.default as Command<CommandOptions>;
 
-      if (cmd) {
-        this.client.commands.push(cmd);
-        this.commands.push(cmd);
-        this.log(`Commande ${cmd.options.name} chargée`);
-      }
-    });
-  }
-  private loadEvents() {
-    readdirSync("./dist/events").forEach((fileName) => {
-      const event = require(`../events/${fileName}`)?.default as Event<
-        keyof ClientEvents
-      >;
+            if (cmd) {
+                this.client.commands.push(cmd);
+                this.commands.push(cmd);
+                this.log(`Commande ${cmd.options.name} chargée`);
+            }
+        });
+    }
+    private loadEvents() {
+        readdirSync('./dist/events').forEach((fileName) => {
+            const event = require(`../events/${fileName}`)?.default as Event<keyof ClientEvents>;
 
-      this.events.push(event);
-      this.client.on(event.key, event.run);
+            this.events.push(event);
+            this.client.on(event.key, event.run);
 
-      this.log(`Event ${event.key} chargé`);
-    });
-  }
-  private async loadPronote() {
-    this.pronote = await login(
-      process.env.pronoteURL,
-      process.env.pronoteUsername,
-      process.env.pronotePassword,
-      process.env.pronoteCas ?? "none"
-    );
-  }
+            this.log(`Event ${event.key} chargé`);
+        });
+    }
+    private async loadPronote() {
+        this.pronote = await login(
+            process.env.pronoteURL,
+            process.env.pronoteUsername,
+            process.env.pronotePassword,
+            process.env.pronoteCas ?? 'none'
+        );
+    }
 
-  public get container() {
-    return {
-      commands: this.commands,
-      events: this.events,
-      pronote: this.pronote,
-    };
-  }
-  private log(msg: string) {
-    console.log(`[*] ${msg}`);
-  }
+    public get container() {
+        return {
+            commands: this.commands,
+            events: this.events,
+            pronote: this.pronote
+        };
+    }
+    private log(msg: string) {
+        console.log(`[*] ${msg}`);
+    }
 }
 
-declare module "@androz2091/insta.js" {
-  interface Client {
-    commands: Command<CommandOptions>[];
-    handler: Handler;
-  }
+declare module '@androz2091/insta.js' {
+    interface Client {
+        commands: Command<CommandOptions>[];
+        handler: Handler;
+    }
 }
