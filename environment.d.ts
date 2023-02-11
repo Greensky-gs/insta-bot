@@ -3,6 +3,10 @@ declare global {
         interface ProcessEnv {
             name: string;
             password: string;
+            db_h: string;
+            db_d: string;
+            db_u: string;
+            db_p: string;
         }
     }
 }
