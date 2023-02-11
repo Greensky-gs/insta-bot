@@ -8,5 +8,6 @@ export type CommandOptions = {
     needPrefix?: boolean;
     description: string;
     groupOnly?: boolean;
+    hiddenFromPublic?: boolean;
 };
 export type commandRunFunction = (message: Message, args: string[]) => unknown;
