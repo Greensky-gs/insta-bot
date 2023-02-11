@@ -13,6 +13,7 @@ declare global {
             pronoteUsername: string;
             pronotePassword: string;
             pronoteCas?: string;
+            myName: string;
         }
     }
 }
