@@ -54,6 +54,8 @@ export class Handler {
             process.env.pronotePassword,
             process.env.pronoteCas ?? 'none'
         );
+
+        this.pronote.setKeepAlive(true);
     }
 
     public get container() {
