@@ -11,4 +11,22 @@ export const getDayName = (int: number) => {
 
     return days[int];
 };
+export const getMonthName = (int: number) => {
+    const months = [
+        'janvier',
+        'février',
+        'mars',
+        'avril',
+        'mai',
+        'juin',
+        'juillet',
+        'août',
+        'septembre',
+        'octobre',
+        'novembre',
+        'décembre'
+    ];
+
+    return months[int];
+};
 export const capitalize = (str: string) => str[0].toUpperCase() + str.slice(1);
