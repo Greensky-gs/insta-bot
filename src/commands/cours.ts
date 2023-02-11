@@ -15,12 +15,12 @@ export default new Command({
   message.chat
     .sendMessage(
       nextClass.isCancelled
-        ? `Votre prochain cours (${nextClass.subject}) est annulé`
+        ? `Votre prochain cours (${nextClass.subject.toLowerCase()}) est annulé`
         : nextClass.isAway
         ? `Le professeur (${nextClass.teacher}) est absent`
-        : `Le prochain cours est ${nextClass.subject} en salle ${
-            nextClass.room
-          } le ${getDayName(nextClass.from.getDay())}`,
+        : `Le prochain cours est ${nextClass.subject.toLowerCase()} en salle ${
+            nextClass.room.split(' ')[0]
+          } le ${getDayName(nextClass.from.getDay())} à ${nextClass.from.getHours()}h${nextClass.from.getMinutes()}`,
       null
     )
     .catch(() => {});
