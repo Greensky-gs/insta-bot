@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "yarn tsc -b",
-    "prettier": "yarn prettier -w src",
+    "lint": "yarn prettier -w src",
     "start": "node dist/index.js",
     "launch": "yarn install && yarn build && yarn start"
   },

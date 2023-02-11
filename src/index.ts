@@ -5,8 +5,12 @@ import { Handler } from "./structures/Handler";
 config();
 
 export const client = new Client({
-    disableReplyPrefix: false
+  disableReplyPrefix: false,
 });
 
 client.login(process.env.name, process.env.password, {});
 client.handler = new Handler(client);
+
+process.on("unhandledRejection", (reason) => {
+  console.log(reason);
+});
