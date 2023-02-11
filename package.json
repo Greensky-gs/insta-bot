@@ -7,6 +7,7 @@
   "dependencies": {
     "@androz2091/insta.js": "^1.6.1",
     "@dorian-eydoux/pronote-api": "^2.3.4",
+    "blagues-api": "^2.1.0",
     "fs": "^0.0.1-security",
     "lint-staged": "^13.1.1",
     "moment": "^2.29.4",

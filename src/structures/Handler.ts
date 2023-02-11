@@ -5,12 +5,14 @@ import { Command } from './Command';
 import { CommandOptions } from '../typings/structures';
 import { Event } from './Event';
 import { PronoteStudentSession, login } from '@dorian-eydoux/pronote-api';
+import BlaguesAPI from 'blagues-api';
 
 export class Handler {
     private client: Client;
     private commands: Command<CommandOptions>[] = [];
     private events: Event<keyof ClientEvents>[] = [];
     private pronote: PronoteStudentSession;
+    private jokes: BlaguesAPI;
 
     constructor(client: Client) {
         this.client = client;
@@ -22,6 +24,7 @@ export class Handler {
         this.loadCommands();
         this.loadEvents();
         this.loadPronote();
+        this.loadJokes();
     }
 
     private loadCommands() {
@@ -57,12 +60,16 @@ export class Handler {
 
         this.pronote.setKeepAlive(true);
     }
+    private loadJokes() {
+        this.jokes = new BlaguesAPI(process.env.blaguesAPIToken);
+    }
 
     public get container() {
         return {
             commands: this.commands,
             events: this.events,
-            pronote: this.pronote
+            pronote: this.pronote,
+            jokes: this.jokes
         };
     }
     private log(msg: string) {

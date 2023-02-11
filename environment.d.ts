@@ -14,6 +14,7 @@ declare global {
             pronotePassword: string;
             pronoteCas?: string;
             myName: string;
+            blaguesAPIToken: string;
         }
     }
 }
