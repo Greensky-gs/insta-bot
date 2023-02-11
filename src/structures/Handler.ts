@@ -22,7 +22,7 @@ export class Handler {
 
     private loadCommands() {
         readdirSync('./dist/commands').forEach((fileName) => {
-            const cmd = require(`./dist/commands/${fileName}`)?.default as Command<CommandOptions>;
+            const cmd = require(`../commands/${fileName}`)?.default as Command<CommandOptions>;
 
             if (cmd) {
                 this.client.commands.push(cmd);
@@ -33,7 +33,7 @@ export class Handler {
     }
     private loadEvents() {
         readdirSync('./dist/events').forEach((fileName) => {
-            const event = require(`./dist/events/${fileName}`)?.default as Event<keyof ClientEvents>;
+            const event = require(`../events/${fileName}`)?.default as Event<keyof ClientEvents>;
 
             this.events.push(event);
             this.client.on(event.key, event.run);
