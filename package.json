@@ -6,8 +6,28 @@
   "license": "MIT",
   "dependencies": {
     "@androz2091/insta.js": "^1.6.1",
-    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "lint-staged": "^13.1.1",
     "tsc": "^2.0.4",
     "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-typescript": "^0.14.0",
+    "prettier": "^2.8.4"
+  },
+  "scripts": {
+    "build": "yarn tsc -b",
+    "prettier": "yarn prettier -w src",
+    "start": "node dist/index.js",
+    "launch": "yarn install && yarn build && yarn start"
+  },
+  "lint-staged": {
+    "*.{ts}": "eslint"
   }
 }
