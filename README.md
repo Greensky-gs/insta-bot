@@ -4,7 +4,7 @@ Insta-bot by [Greensky-gs](https://github.com/Greensky-gs)
 
 ## Personnal bot
 
-This is the source code of my personnal bot that I use for my private friend instagram group
+This is the source code of my personnal bot that I use for my private friend instagram group, so texts are in french
 
 You can use it as you want
 
