@@ -1,0 +1,13 @@
+{
+  "name": "insta-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Greensky-gs <72513011+Greensky-gs@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@androz2091/insta.js": "^1.6.1",
+    "dotenv": "^16.0.3",
+    "tsc": "^2.0.4",
+    "typescript": "^4.9.5"
+  }
+}
