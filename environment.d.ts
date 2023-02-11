@@ -9,6 +9,7 @@ declare global {
             db_p: string;
             prefix: string;
             chatID: string;
+            pronoteURL: string;
         }
     }
 }

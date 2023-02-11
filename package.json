@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "@androz2091/insta.js": "^1.6.1",
+    "@dorian-eydoux/pronote-api": "^2.3.4",
     "fs": "^0.0.1-security",
     "lint-staged": "^13.1.1",
     "mysql": "^2.18.1",
@@ -13,9 +14,9 @@
     "typescript": "^4.9.5"
   },
   "devDependencies": {
+    "@types/mysql": "^2.15.21",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
-    "@types/mysql": "^2.15.21",
     "dotenv": "^16.0.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
