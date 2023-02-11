@@ -9,4 +9,4 @@ export type CommandOptions = {
     description: string;
     groupOnly?: boolean;
 };
-export type commandRunFunction = (message: Message) => unknown;
+export type commandRunFunction = (message: Message, args: string[]) => unknown;
