@@ -24,6 +24,16 @@ If you haven't yarn installed, use the command `npm install yarn -g` to install 
 
 You need a MySQL database to run the bot
 
+## Features
+
+This bot has few features :
+
+* Fetch next class using your pronote account
+* Fetch today's time table using your pronote account
+* Show homeworks (once again, with your pronote account)
+* Find your way to a class
+* Show random jokes ( using [blagues-api](https://blagues-api.fr) )
+
 ### .Env file
 
 There are some informations to put in the `.env` file (at the root of the project)
