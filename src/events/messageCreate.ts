@@ -1,4 +1,5 @@
 import { Event } from '../structures/Event';
+import { config } from '../typings/bot';
 
 export default new Event('messageCreate', (message) => {
     if (!message.content.toLowerCase().startsWith(process.env.prefix.toLowerCase())) return;
@@ -15,7 +16,7 @@ export default new Event('messageCreate', (message) => {
     );
     if (!cmd) return;
 
-    // if (cmd.options.groupOnly && message.chat.id !== process.env.chatID) return;
+    if (config('state') === 'prod' && cmd.options.groupOnly && message.chat.id !== process.env.chatID) return;
     if (cmd.options.allowed_users && !cmd.options.allowed_users.includes(message.authorID.toString())) return;
     if (cmd.options.denied_users && cmd.options.denied_users.includes(message.authorID.toString())) return;
 

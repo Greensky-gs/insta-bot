@@ -1,5 +1,5 @@
 import { Message, User } from '@androz2091/insta.js';
-import { Values } from '../typings/bot';
+import { Values, config } from '../typings/bot';
 
 export const waitForMesage = ({
     message,
@@ -13,7 +13,7 @@ export const waitForMesage = ({
     whoCanReply?: 'useronly' | 'everyoneexeptuser' | 'everyone';
 }): Promise<Message> => {
     return new Promise((resolve, reject) => {
-        if (user.id === Values.OwnerID) return reject('Cannot be done on the owner');
+        if (config('state') === 'prod' && user.id === Values.OwnerID) return reject('Cannot be done on the owner');
         const collector = message.createMessageCollector({});
         let resolved = false;
 
