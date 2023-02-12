@@ -33,8 +33,8 @@ export class groupDataManager {
         this._cache[user_id] = edited;
         query(
             existed
-                ? `UPDATE ${DatabaseTables.GroupData} SET group="${edited.group}", lv2="${edited.lv2}" WHERE user_id="${user_id}"`
-                : `INSERT INTO ${DatabaseTables.GroupData} ( user_id, group, lv2 ) VALUES ( "${user_id}", "${edited.group}", "${edited.lv2}" )`
+                ? `UPDATE ${DatabaseTables.GroupData} SET \`group\`="${edited.group}", lv2="${edited.lv2}" WHERE user_id="${user_id}"`
+                : `INSERT INTO ${DatabaseTables.GroupData} ( user_id, \`group\`, lv2 ) VALUES ( "${user_id}", "${edited.group}", "${edited.lv2}" )`
         );
     }
     private start() {
