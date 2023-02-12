@@ -1,5 +1,5 @@
 import { Command } from '../structures/Command';
-import { getDayName } from '../utils/time';
+import { getDayName, minutesDisplay } from '../utils/time';
 
 export default new Command({
     name: 'cours',
@@ -25,9 +25,9 @@ export default new Command({
                 ? `Le professeur (${nextClass.teacher}) est absent`
                 : `Le prochain cours est ${nextClass.subject.toLowerCase()} en salle ${
                       nextClass.room.split(' ')[0]
-                  } le ${getDayName(
-                      nextClass.from.getDay()
-                  )} à ${nextClass.from.getHours()}h${nextClass.from.getMinutes()}${footer}`,
+                  } le ${getDayName(nextClass.from.getDay())} à ${nextClass.from.getHours()}h${minutesDisplay(
+                      nextClass.from.getMinutes()
+                  )}${footer}`,
             null
         )
         .catch(() => {});

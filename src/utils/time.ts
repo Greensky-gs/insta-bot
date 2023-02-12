@@ -30,3 +30,7 @@ export const getMonthName = (int: number) => {
     return months[int];
 };
 export const capitalize = (str: string) => str[0].toUpperCase() + str.slice(1);
+export const minutesDisplay = (mn: number) => {
+    if (mn < 10) return `0${mn}`;
+    return mn.toString();
+};
