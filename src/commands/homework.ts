@@ -12,10 +12,9 @@ export default new Command({
     description: 'Affiche les prochains devoirs',
     groupOnly: true
 }).setRun(async (message) => {
-    const homeworks = await message.client.handler.container.pronote.homeworks(
-        new Date(),
-        new Date(Date.now() + 172800000)
-    );
+    const homeworks = await message.client.handler.container.pronotes[
+        message.client.groupDatas.getGroupCode(message.author.id)
+    ].homeworks(new Date(), new Date(Date.now() + 172800000));
 
     if (homeworks.length === 0)
         return message.chat

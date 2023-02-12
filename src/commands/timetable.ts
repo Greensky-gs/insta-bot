@@ -7,10 +7,9 @@ export default new Command({
     description: "Affiche l'emploi du temps du jour",
     groupOnly: true
 }).setRun(async (message) => {
-    const timetable = await message.client.handler.container.pronote.timetable(
-        new Date(),
-        new Date(new Date().setHours(23, 59))
-    );
+    const timetable = await message.client.handler.container.pronotes[
+        message.client.groupDatas.getGroupCode(message.author.id)
+    ].timetable(new Date(), new Date(new Date().setHours(23, 59)));
 
     if (timetable.length === 0) return message.chat.sendMessage(`Il n'y a pas de cours prévu`, null).catch(() => {});
 
