@@ -6,8 +6,15 @@ export default new Command({
     description: 'Affiche le prochain cours',
     groupOnly: true
 }).setRun(async (message) => {
+    const footer =
+        message.client.groupDatas.hasData(message.author.id) && JSON.parse(process.env.pronoteDatas).length !== 4
+            ? ''
+            : `\n\nComme vous n'êtes pas configuré, vous voyez l'emploi du temps des personnes qui font chinois du groupe A.\nUtilisez ${process.env.prefix}configurer pour vous configurer`;
+
     const nextClass = (
-        await message.client.handler.container.pronote.timetable(new Date(), new Date(Date.now() + 172800000))
+        await message.client.handler.container.pronotes[
+            message.client.groupDatas.getGroupCode(message.author.id)
+        ].timetable(new Date(), new Date(Date.now() + 172800000))
     )[0];
 
     message.chat
@@ -20,7 +27,7 @@ export default new Command({
                       nextClass.room.split(' ')[0]
                   } le ${getDayName(
                       nextClass.from.getDay()
-                  )} à ${nextClass.from.getHours()}h${nextClass.from.getMinutes()}`,
+                  )} à ${nextClass.from.getHours()}h${nextClass.from.getMinutes()}${footer}`,
             null
         )
         .catch(() => {});
