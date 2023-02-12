@@ -37,6 +37,15 @@ export class groupDataManager {
                 : `INSERT INTO ${DatabaseTables.GroupData} ( user_id, \`group\`, lv2 ) VALUES ( "${user_id}", "${edited.group}", "${edited.lv2}" )`
         );
     }
+    public hasData(user_id: string) {
+        return this.cache[user_id] !== undefined;
+    }
+    public getGroupCode(user_id: string) {
+        if (!this.hasData(user_id) || JSON.parse(process.env.pronoteDatas).length !== 4) return 'AC';
+
+        const dt = this.getGroupData(user_id);
+        return `${dt.group}${dt.lv2[0]}`.toUpperCase();
+    }
     private start() {
         this.fillCache();
     }
