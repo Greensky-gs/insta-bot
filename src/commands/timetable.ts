@@ -4,7 +4,8 @@ import { capitalize, getDayName, getMonthName } from '../utils/time';
 export default new Command({
     name: 'edt',
     aliases: ['emploi-du-temps'],
-    description: "Affiche l'emploi du temps du jour"
+    description: "Affiche l'emploi du temps du jour",
+    groupOnly: true
 }).setRun(async (message) => {
     const timetable = await message.client.handler.container.pronote.timetable(
         new Date(),

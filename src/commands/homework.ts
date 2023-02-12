@@ -9,7 +9,8 @@ moment.locale('fr');
 export default new Command({
     name: 'devoirs',
     aliases: ['devoir', 'travail'],
-    description: 'Affiche les prochains devoirs'
+    description: 'Affiche les prochains devoirs',
+    groupOnly: true
 }).setRun(async (message) => {
     const homeworks = await message.client.handler.container.pronote.homeworks(
         new Date(),

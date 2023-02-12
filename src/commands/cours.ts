@@ -3,7 +3,8 @@ import { getDayName } from '../utils/time';
 
 export default new Command({
     name: 'cours',
-    description: 'Affiche le prochain cours'
+    description: 'Affiche le prochain cours',
+    groupOnly: true
 }).setRun(async (message) => {
     const nextClass = (
         await message.client.handler.container.pronote.timetable(new Date(), new Date(Date.now() + 172800000))

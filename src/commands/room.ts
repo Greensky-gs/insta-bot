@@ -5,7 +5,8 @@ import { waitForMesage } from '../utils/waitForMessage';
 export default new Command({
     name: 'classe',
     aliases: ['salle'],
-    description: 'Calcule le chemin vers une salle'
+    description: 'Calcule le chemin vers une salle',
+    groupOnly: true
 }).setRun(async (message, args) => {
     let room = args[0];
 

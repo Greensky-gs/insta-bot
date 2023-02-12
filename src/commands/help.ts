@@ -3,7 +3,8 @@ import { Command } from '../structures/Command';
 export default new Command({
     name: 'commandes',
     description: 'Affiche toutes les commandes',
-    aliases: ['cmd', 'cmds', 'help', 'aide', 'aled', 'oskour']
+    aliases: ['cmd', 'cmds', 'help', 'aide', 'aled', 'oskour'],
+    groupOnly: true
 }).setRun((message) => {
     const cmds = message.client.commands
         .filter((x) => x.options?.hiddenFromPublic !== true)
