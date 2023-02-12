@@ -15,7 +15,7 @@ export default new Event('messageCreate', (message) => {
     );
     if (!cmd) return;
 
-    if (cmd.options.groupOnly && message.chat.id !== process.env.chatID) return;
+    // if (cmd.options.groupOnly && message.chat.id !== process.env.chatID) return;
     if (cmd.options.allowed_users && !cmd.options.allowed_users.includes(message.authorID.toString())) return;
     if (cmd.options.denied_users && cmd.options.denied_users.includes(message.authorID.toString())) return;
 
