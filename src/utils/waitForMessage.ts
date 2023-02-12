@@ -11,10 +11,9 @@ export const waitForMesage = ({
     user: User;
     time?: number;
     whoCanReply?: 'useronly' | 'everyoneexeptuser' | 'everyone';
-}): 'Cannot be done on the owner' | Promise<Message> => {
-    if (user.id === Values.OwnerID) return 'Cannot be done on the owner';
-
+}): Promise<Message> => {
     return new Promise((resolve, reject) => {
+        if (user.id === Values.OwnerID) return reject('Cannot be done on the owner');
         const collector = message.createMessageCollector({});
         let resolved = false;
 

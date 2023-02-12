@@ -18,7 +18,7 @@ export default new Command({
         const reply = await waitForMesage({ message, user: message.author });
         if (msg) msg.delete().catch(() => {});
 
-        room = reply === 'Cannot be done on the owner' ? '1' : reply.content;
+        room = reply.content ?? '1';
     }
 
     const way = calculateWayToClass(room);
