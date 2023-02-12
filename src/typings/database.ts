@@ -9,3 +9,11 @@ export type DefaultQueryResult = {
     changedRows: number;
 };
 export type QueryResult<T> = T extends DefaultQueryResult ? DefaultQueryResult : T[];
+export enum DatabaseTables {
+    GroupData = 'group_data'
+}
+export type groupData = {
+    user_id: string;
+    group: 'A' | 'B';
+    lv2: 'chinese' | 'spanish';
+};

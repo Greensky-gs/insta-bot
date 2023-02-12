@@ -13,6 +13,12 @@ export class Handler {
     private events: Event<keyof ClientEvents>[] = [];
     private pronote: PronoteStudentSession;
     private jokes: BlaguesAPI;
+    private pronotes: {
+        AC: PronoteStudentSession;
+        AS: PronoteStudentSession;
+        BC: PronoteStudentSession;
+        BS: PronoteStudentSession;
+    } = { AC: null, AS: null, BC: null, BS: null };
 
     constructor(client: Client) {
         this.client = client;
@@ -51,6 +57,24 @@ export class Handler {
         });
     }
     private async loadPronote() {
+        const passwords = JSON.parse(process.env.pronoteDatas) as {
+            username: string;
+            password: string;
+            group: 'A' | 'B';
+            lv2: 'chinese' | 'spanish';
+        }[];
+
+        passwords.forEach(async (pwd) => {
+            const session = await login(
+                process.env.pronoteURL,
+                pwd.username,
+                pwd.password,
+                process.env.pronoteCas ?? 'none'
+            );
+
+            session.setKeepAlive(true);
+            this.pronotes[`${pwd.group}${pwd.lv2[0].toUpperCase()}`] = session;
+        });
         this.pronote = await login(
             process.env.pronoteURL,
             process.env.pronoteUsername,
@@ -69,7 +93,8 @@ export class Handler {
             commands: this.commands,
             events: this.events,
             pronote: this.pronote,
-            jokes: this.jokes
+            jokes: this.jokes,
+            pronotes: this.pronotes
         };
     }
     private log(msg: string) {
