@@ -7,3 +7,6 @@ export const plurial = (count: number | any[], opts?: { plurial?: string; singul
 
     return int === 1 ? singular : plurial;
 };
+export const random = ({ max = 100, min = 0 }: { max?: number; min?: number }) => {
+    return Math.floor(Math.random() * max - min) + min;
+};

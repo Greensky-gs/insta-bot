@@ -17,10 +17,10 @@ export class groupDataManager {
         };
     }
     public setGroupData(user_id: string, opts: { lv2?: 'chinese' | 'spanish'; group?: 'A' | 'B' }) {
-        if (!this._cache[user_id] && Object.keys(opts).length === 2) return 'not enough informations';
+        if (!this._cache[user_id] && Object.keys(opts).length !== 2) return 'not enough informations';
 
         const data = this._cache[user_id] ?? {};
-        const existed = Object.keys(this._cache[user_id]).length > 0;
+        const existed = this.cache[user_id] ? true : false;
 
         const edited = {
             ...data,
