@@ -17,6 +17,11 @@ export default new Command({
         dates.start = new Date(new Date(Date.now() + 86400000).setHours(7));
         dates.end = new Date(new Date(Date.now() + 86400000).setHours(23, 59));
     }
+    if (/^apr(e|è|é)s?( +|-)demain/i.test(args.join(' '))) {
+        dates.start = new Date(new Date(Date.now() + 172800000).setHours(7));
+        dates.end = new Date(new Date(Date.now() + 172800000).setHours(23, 59));
+    }
+
     const timetable = await message.client.handler.container.pronotes[
         message.client.groupDatas.getGroupCode(message.author.id)
     ].timetable(dates.start, dates.end);
