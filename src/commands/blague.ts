@@ -12,7 +12,6 @@ export default new Command({
     const joke = await message.client.handler.container.jokes.randomCategorized(type).catch(() => {});
 
     if (!joke) return message.chat.sendMessage(`J'ai plus de blagues à raconter`, null).catch(() => {});
-    console.log(joke);
 
     await message.chat.sendMessage(joke.joke, null).catch(() => {});
     setTimeout(() => {
