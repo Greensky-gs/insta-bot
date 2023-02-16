@@ -2,7 +2,7 @@ import { Event } from '../structures/Event';
 import { config } from '../typings/bot';
 
 export default new Event('messageCreate', (message) => {
-    if (!message.content.toLowerCase().startsWith(process.env.prefix.toLowerCase())) return;
+    if (!message.content?.toLowerCase()?.startsWith(process.env.prefix.toLowerCase())) return;
 
     const args = message.content.toLowerCase().slice(process.env.prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
