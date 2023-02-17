@@ -6,7 +6,6 @@ export default new Command({
 }).setRun(async (message, args) => {
     const Categories = message.client.handler.container.jokes.categories;
     let type = Categories.GLOBAL;
-    if (/^noire?/i.test(args.join(' '))) type = Categories.DARK;
     if (/^limite?/i.test(args.join(' '))) type = Categories.LIMIT;
 
     const joke = await message.client.handler.container.jokes.randomCategorized(type).catch(() => {});
